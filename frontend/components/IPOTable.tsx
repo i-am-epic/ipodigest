@@ -1,6 +1,5 @@
 "use client"; // This is a client component 👈🏽
 
-
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
@@ -26,7 +25,6 @@ interface IPO {
     close_date: string
     listing_date: string
 }
-
 
 // Function to determine row color based on status
 const getStatusColor = (status: string) => {
@@ -69,33 +67,37 @@ const getStatus = (openDate: string, closeDate: string, listingDate: string) => 
     return ''
 }
 
-
 export default function IPOTable() {
 
     const [isMounted, setIsMounted] = useState(false)
-
-
-    if (!isMounted) {
-        return null // Skip rendering until client-side is mounted
-    }
     const [ipos, setIpos] = useState<IPO[]>([])
 
+    // Set isMounted on first render to allow rendering
     useEffect(() => {
         setIsMounted(true)
 
-        // In a real application, you would fetch data from an API here
+        // Fetch IPO data when component is mounted
         const fetchIPOs = async () => {
-            const response = await fetch('http://127.0.0.1:8000/scrape-ipo', {
-                method: 'GET',
-                headers: {
-                    accept: 'application/json',
-                },
-            })
-            const data = await response.json()
-            setIpos(data)
+            try {
+                const response = await fetch('http://127.0.0.1:8000/scrape-ipo', {
+                    method: 'GET',
+                    headers: {
+                        accept: 'application/json',
+                    },
+                })
+                const data = await response.json()
+                setIpos(data)
+            } catch (error) {
+                console.error("Error fetching IPO data:", error)
+            }
         }
+
         fetchIPOs()
     }, [])
+
+    if (!isMounted) {
+        return null // Prevent rendering on server-side
+    }
 
     return (
         <Table>
