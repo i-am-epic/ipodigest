@@ -1,0 +1,57 @@
+# Python / FastAPI
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.env
+*.venv
+.venv/
+env/
+venv/
+backend/fastapi-env/
+fastapi-env
+pip-log.txt
+pip-delete-this-directory.txt
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+backend/__pycache__/
+backend/fastapi-env/
+
+# React Native
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+*.jsbundle
+*.jks
+*.keystore
+android/.gradle/
+android/app/build/
+ios/build/
+ios/Pods/
+ios/Podfile.lock
+ios/*.xcodeproj/
+ios/*.xcworkspace/
+*.swp
+*.swo
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.tmp.*
+*.bak
+*.orig
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
